@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Reviews — ParkTech Solutions</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/features.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    .page-hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); padding: 10rem 2rem 5rem; text-align: center; }
+    .page-hero h1 { color: var(--white); margin-bottom: 0.75rem; }
+    .page-hero h1 span { color: var(--gold); }
+    .page-hero p { color: rgba(255,255,255,0.6); }
+    .breadcrumb { display:flex;justify-content:center;gap:0.5rem;font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:1.5rem; }
+    .breadcrumb a { color:var(--gold); }
+
+    .review-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: start; }
+    .review-form-card { background: var(--white); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-md); border: 1px solid var(--gray-200); position: sticky; top: 90px; }
+    .form-title { font-family: 'Syne',sans-serif; font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .form-sub { color: var(--gray-600); font-size: 0.9rem; margin-bottom: 2rem; }
+
+    .stars-input { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .star-btn { font-size: 2rem; color: var(--gray-200); cursor: pointer; transition: var(--transition); background: none; border: none; padding: 0; line-height: 1; }
+    .star-btn.active, .star-btn:hover { color: var(--gold); }
+
+    .reviews-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .review-card { background: var(--white); border-radius: var(--radius-lg); padding: 1.5rem; border: 1px solid var(--gray-200); transition: var(--transition); }
+    .review-card:hover { border-color: var(--gold); box-shadow: var(--shadow-md); }
+    .review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+    .reviewer { display: flex; align-items: center; gap: 0.75rem; }
+    .rev-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--navy), var(--navy-mid)); display: flex; align-items: center; justify-content: center; color: var(--gold); font-family: 'Syne',sans-serif; font-weight: 800; }
+    .rev-name { font-weight: 700; font-size: 0.95rem; }
+    .rev-dept { font-size: 0.8rem; color: var(--gray-400); }
+    .rev-stars { color: var(--gold); font-size: 0.9rem; }
+    .rev-date { font-size: 0.78rem; color: var(--gray-400); }
+    .rev-text { color: var(--gray-600); font-size: 0.9rem; line-height: 1.6; }
+    .delete-btn { background: rgba(239,68,68,0.1); color: #ef4444; border: none; padding: 0.3rem 0.75rem; border-radius: 6px; font-size: 0.8rem; cursor: pointer; transition: var(--transition); }
+    .delete-btn:hover { background: #ef4444; color: white; }
+
+    .rating-summary { background: var(--navy); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
+    .big-rating { text-align: center; }
+    .big-number { font-family: 'Syne',sans-serif; font-size: 4rem; font-weight: 800; color: var(--gold); line-height: 1; }
+    .big-stars { color: var(--gold); font-size: 1.2rem; }
+    .big-count { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+    .rating-bars { flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+    .rating-bar-row { display: flex; align-items: center; gap: 0.75rem; }
+    .rating-bar-label { color: rgba(255,255,255,0.6); font-size: 0.82rem; width: 30px; }
+    .rating-bar-track { flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+    .rating-bar-fill { height: 100%; background: var(--gold); border-radius: 3px; }
+    .rating-bar-count { color: rgba(255,255,255,0.4); font-size: 0.8rem; width: 20px; }
+
+    @media(max-width:768px) { .review-layout { grid-template-columns: 1fr; } .review-form-card { position: static; } }
+  </style>
+</head>
+<body>
+<div id="loader"><div class="loader-inner"><div class="loader-logo">smart<span>city</span></div><div class="loader-bar"></div></div></div>
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">smart<span>city</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li class="dropdown-parent"><a href="services.html">Services</a><ul class="nav-dropdown"><li><a href="pricing.html">Pricing Plans</a></li><li><a href="services.html">All Services</a></li><li><a href="dashboard.html">Dashboard</a></li></ul></li>
+    <li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="review.html" class="active">Reviews</a></li><li><a href="login.html">Login</a></li>
+    <li><a href="booking.html" class="nav-cta">Book Now</a></li>
+  </ul>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<nav class="mobile-nav"><a href="index.html">Home</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="review.html">Reviews</a><a href="login.html">Login</a><a href="booking.html" class="m-cta">Book Now →</a></nav>
+
+<section class="page-hero">
+  <div class="breadcrumb"><a href="index.html">Home</a> / Reviews</div>
+  <h1>Customer <span>Reviews</span></h1>
+  <p>Real feedback from our parking community.</p>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="rating-summary reveal">
+      <div class="big-rating">
+        <div class="big-number">4.7</div>
+        <div class="big-stars">★★★★★</div>
+        <div class="big-count">Based on 1,240 reviews</div>
+      </div>
+      <div class="rating-bars">
+        <div class="rating-bar-row"><span class="rating-bar-label">5★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:70%"></div></div><span class="rating-bar-count">868</span></div>
+        <div class="rating-bar-row"><span class="rating-bar-label">4★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:20%"></div></div><span class="rating-bar-count">248</span></div>
+        <div class="rating-bar-row"><span class="rating-bar-label">3★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:6%"></div></div><span class="rating-bar-count">74</span></div>
+        <div class="rating-bar-row"><span class="rating-bar-label">2★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:2%"></div></div><span class="rating-bar-count">25</span></div>
+        <div class="rating-bar-row"><span class="rating-bar-label">1★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:1%"></div></div><span class="rating-bar-count">25</span></div>
+      </div>
+    </div>
+
+    <div class="review-layout">
+      <!-- FORM -->
+      <div class="review-form-card reveal">
+        <div class="form-title">Write a Review</div>
+        <div class="form-sub">Share your parking experience with us.</div>
+        <form id="reviewForm" onsubmit="submitReview(event)">
+          <div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-control" id="revName" placeholder="pratik Deshmukh" required/></div>
+          <div class="form-group">
+            <label class="form-label">Department / Area</label>
+            <select class="form-control" id="revDept" required>
+              <option value="">Select</option>
+              <option>Entrance</option><option>Billing</option><option>Security</option><option>Valet</option><option>App Experience</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Rating</label>
+            <div class="stars-input" id="starsInput">
+              <button type="button" class="star-btn" data-val="1">★</button>
+              <button type="button" class="star-btn" data-val="2">★</button>
+              <button type="button" class="star-btn" data-val="3">★</button>
+              <button type="button" class="star-btn" data-val="4">★</button>
+              <button type="button" class="star-btn" data-val="5">★</button>
+            </div>
+            <input type="hidden" id="revRating" value="0"/>
+          </div>
+          <div class="form-group"><label class="form-label">Your Feedback</label><textarea class="form-control" id="revComment" rows="4" placeholder="Tell us about your experience..." required style="resize:vertical"></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-star"></i> Submit Review</button>
+        </form>
+      </div>
+
+      <!-- REVIEWS LIST -->
+      <div>
+        <div id="reviewsList" class="reviews-list"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="nav-logo">Park<span>Tech</span></div><p>India's leading smart parking IT company.</p><div class="social-links" style="margin-top:1.5rem"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div><div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li></ul></div><div class="footer-col"><h5>Support</h5><ul><li><a href="contact.html">Contact Us</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="booking.html">Book a Slot</a></li></ul></div><div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul></div></div><div class="footer-bottom"><p> 2025 ParkTech Solutions Pvt. Ltd. All rights reserved.</p></div></div></footer>
+<a href="https://wa.me/919876543210" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<button class="back-top"><i class="fas fa-chevron-up"></i></button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+<script src="js/features.js"></script>
+<script>
+  let rating = 0;
+  const stars = document.querySelectorAll('.star-btn');
+  stars.forEach(s => {
+    s.addEventListener('click', () => {
+      rating = parseInt(s.dataset.val);
+      document.getElementById('revRating').value = rating;
+      stars.forEach((b,i) => b.classList.toggle('active', i < rating));
+    });
+  });
+
+  const defaultReviews = [
+    { name:'Rahul S.', dept:'Security', rating:5, comment:'CCTV coverage is excellent. My car was safe and I could track it via the app. Superb service!', date:'05 Apr 2025' },
+    { name:'Priya N.', dept:'App Experience', rating:5, comment:'The app is so smooth. Booked my slot while stuck in traffic, drove straight to it. No stress!', date:'03 Apr 2025' },
+    { name:'Amit K.', dept:'Billing', rating:4, comment:'Transparent pricing, no hidden charges. UPI payment worked flawlessly.', date:'01 Apr 2025' },
+    { name:'Sneha M.', dept:'Valet', rating:5, comment:'Valet service is top-notch. The staff was professional and very courteous.', date:'28 Mar 2025' },
+  ];
+
+  function renderReviews(list) {
+    const container = document.getElementById('reviewsList');
+    container.innerHTML = '';
+    list.forEach((r, i) => {
+      const div = document.createElement('div');
+      div.className = 'review-card reveal';
+      div.innerHTML = `
+        <div class="review-header">
+          <div class="reviewer">
+            <div class="rev-avatar">${r.name.charAt(0)}</div>
+            <div><div class="rev-name">${r.name}</div><div class="rev-dept">${r.dept}</div></div>
+          </div>
+          <div style="text-align:right">
+            <div class="rev-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+            <div class="rev-date">${r.date}</div>
+          </div>
+        </div>
+        <p class="rev-text">${r.comment}</p>
+        ${i < defaultReviews.length ? '' : `<button class="delete-btn" onclick="deleteReview(${i})"><i class="fas fa-trash"></i> Delete</button>`}
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  let reviews = [...defaultReviews];
+  renderReviews(reviews);
+
+  function submitReview(e) {
+    e.preventDefault();
+    if (rating === 0) { alert('Please select a rating!'); return; }
+    const r = {
+      name: document.getElementById('revName').value,
+      dept: document.getElementById('revDept').value,
+      rating,
+      comment: document.getElementById('revComment').value,
+      date: new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})
+    };
+    reviews.unshift(r);
+    renderReviews(reviews);
+    document.getElementById('reviewForm').reset();
+    stars.forEach(b => b.classList.remove('active'));
+    rating = 0;
+    alert('✅ Thank you for your review!');
+  }
+
+  function deleteReview(i) {
+    reviews.splice(i, 1);
+    renderReviews(reviews);
+  }
+</script>
+</body>
+</html>

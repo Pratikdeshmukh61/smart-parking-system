@@ -1,0 +1,132 @@
+/* ========================================
+   AUTHENTICATION PAGES STYLES (LOGIN & REGISTER)
+   ======================================== */
+
+/* ── AUTH PAGE LAYOUT ── */
+body { 
+  background: var(--navy); 
+  min-height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+}
+.auth-page { 
+  flex: 1; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  padding: 6rem 1.5rem 3rem; 
+  position: relative; 
+  overflow: hidden; 
+}
+.auth-page::before { 
+  content: ''; 
+  position: absolute; 
+  top: -30%; 
+  right: -20%; 
+  width: 700px; 
+  height: 700px; 
+  border-radius: 50%; 
+  background: radial-gradient(circle, rgba(240,165,0,0.06), transparent 70%); 
+}
+
+/* ── AUTH FORM CARD ── */
+.auth-form-card {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem; width: 100%; max-width: 420px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  position: relative; z-index: 1;
+}
+.auth-logo {
+  text-align: center; margin-bottom: 2rem;
+  font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
+  color: var(--navy);
+}
+.auth-logo span { color: var(--gold); }
+.auth-title {
+  font-size: 1.8rem; font-weight: 800; color: var(--navy);
+  text-align: center; margin-bottom: 0.5rem;
+}
+.auth-subtitle {
+  text-align: center; color: var(--gray-600);
+  margin-bottom: 2rem; font-size: 0.95rem;
+}
+
+/* ── AUTH FORM STYLES ── */
+.form-row-auth { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 1rem; 
+}
+.form-group-auth { 
+  margin-bottom: 1.5rem; 
+}
+.form-group-auth label {
+  display: block; margin-bottom: 0.5rem;
+  font-weight: 600; color: var(--navy); font-size: 0.9rem;
+}
+.form-group-auth input {
+  width: 100%; padding: 0.875rem 1rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  font-size: 0.95rem; transition: var(--transition);
+  background: var(--white);
+}
+.form-group-auth input:focus {
+  outline: none; border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(240,165,0,0.1);
+}
+.input-icon {
+  position: relative;
+}
+.input-icon i {
+  position: absolute; right: 1rem; top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-400); cursor: pointer;
+  transition: var(--transition);
+}
+.input-icon i:hover { color: var(--gold); }
+
+/* ── PASSWORD STRENGTH METER (REGISTER PAGE) ── */
+.strength-meter {
+  height: 4px; background: var(--gray-200);
+  border-radius: 2px; margin-top: 0.5rem;
+  overflow: hidden;
+}
+.strength-fill { 
+  height: 100%; 
+  width: 0; 
+  border-radius: 2px; 
+  transition: all 0.3s; 
+}
+.strength-text { 
+  font-size: 0.75rem; 
+  color: rgba(255,255,255,0.3); 
+  margin-top: 0.25rem; 
+}
+
+/* ── AUTH SWITCH ── */
+.auth-switch {
+  text-align: center; margin-top: 2rem;
+  padding-top: 1.5rem; border-top: 1px solid var(--gray-200);
+  color: var(--gray-600); font-size: 0.9rem;
+}
+.auth-switch a { 
+  color: var(--gold); 
+  font-weight: 600; 
+  text-decoration: none; 
+}
+.auth-switch a:hover { text-decoration: underline; }
+
+/* ── ERROR MESSAGE ── */
+.err-msg { 
+  display: none; 
+  color: #f87171; 
+  font-size: 0.82rem; 
+  margin-top: 0.4rem; 
+}
+.err-msg.show { display: block; }
+
+/* ── RESPONSIVE DESIGN ── */
+@media(max-width:480px) { 
+  .form-row-auth { grid-template-columns: 1fr; } 
+}

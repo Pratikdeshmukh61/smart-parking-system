@@ -1,0 +1,218 @@
+/* ══════════════════════════════════════════
+   DARK MODE STYLES
+══════════════════════════════════════════ */
+body.dark-mode {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+/* Cards & surfaces */
+body.dark-mode .service-card,
+body.dark-mode .card-base,
+body.dark-mode .booking-form-card,
+body.dark-mode .contact-form-card,
+body.dark-mode .info-card,
+body.dark-mode .review-card,
+body.dark-mode .testimonial-card,
+body.dark-mode .value-card,
+body.dark-mode .team-card,
+body.dark-mode .price-card,
+body.dark-mode .stat-card,
+body.dark-mode .dash-card,
+body.dark-mode .review-form-card,
+body.dark-mode .auth-card {
+  background: #1e293b;
+  border-color: rgba(255,255,255,0.08);
+}
+
+/* Sections */
+body.dark-mode .services-section,
+body.dark-mode .pricing-section,
+body.dark-mode section:not(.how-section):not(.cta-banner):not(.page-hero):not(.stats-band) {
+  background: #0f172a;
+}
+
+body.dark-mode .gray-bg,
+body.dark-mode section[style*="background:var(--gray-100)"],
+body.dark-mode .dash-main {
+  background: #0f172a !important;
+}
+
+/* Text */
+body.dark-mode .section-title { color: #f1f5f9; }
+body.dark-mode .section-sub { color: #94a3b8; }
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4 { color: #f1f5f9; }
+body.dark-mode p { color: #94a3b8; }
+body.dark-mode .service-body p, body.dark-mode .card-content p { color: #94a3b8; }
+body.dark-mode .service-body h3, body.dark-mode .card-content h3 { color: #f1f5f9; }
+
+/* Form inputs */
+body.dark-mode .form-control {
+  background: #1e293b;
+  border-color: rgba(255,255,255,0.1);
+  color: #f1f5f9;
+}
+body.dark-mode .form-control:focus {
+  border-color: var(--gold);
+  background: #253347;
+}
+body.dark-mode .form-label { color: #cbd5e1; }
+
+/* Table */
+body.dark-mode table th { background: #1e293b; color: #94a3b8; }
+body.dark-mode table td { color: #cbd5e1; border-color: rgba(255,255,255,0.05); }
+body.dark-mode tr:hover td { background: rgba(240,165,0,0.03); }
+
+/* Feature items */
+body.dark-mode .feature-item:hover { background: #1e293b; }
+body.dark-mode .feature-item h5 { color: #f1f5f9; }
+body.dark-mode .feature-item p { color: #94a3b8; }
+
+/* Step cards */
+body.dark-mode .step-card { background: rgba(255,255,255,0.03); }
+
+/* Timeline */
+body.dark-mode .timeline-item h4 { color: #f1f5f9; }
+body.dark-mode .timeline::before { background: rgba(255,255,255,0.08); }
+
+/* Price cards */
+body.dark-mode .price-card:not(.popular) { background: #1e293b; border-color: rgba(255,255,255,0.08); }
+body.dark-mode .price-card:not(.popular) .price-amount { color: #f1f5f9; }
+body.dark-mode .price-features li { color: #94a3b8; border-color: rgba(255,255,255,0.05); }
+
+/* Stat cards */
+body.dark-mode .stat-card { background: #1e293b; border-color: rgba(255,255,255,0.06); }
+body.dark-mode .stat-card-info h3 { color: #f1f5f9; }
+body.dark-mode .stat-card-info p { color: #64748b; }
+
+/* Dashboard */
+body.dark-mode .sidebar { background: #020817; border-color: rgba(255,255,255,0.04); }
+body.dark-mode .dash-card { background: #1e293b; border-color: rgba(255,255,255,0.06); }
+body.dark-mode .dash-card-header { border-color: rgba(255,255,255,0.06); }
+body.dark-mode .dash-card-header h3 { color: #f1f5f9; }
+body.dark-mode .bar-track { background: rgba(255,255,255,0.06); }
+
+/* Auth */
+body.dark-mode .auth-input { background: rgba(255,255,255,0.04); }
+
+/* Testimonials */
+body.dark-mode .testimonial-text { color: #94a3b8; }
+body.dark-mode .author-name { color: #f1f5f9; }
+
+/* Footer stays same (already dark) */
+
+/* ══════════════════════════════════════════
+   DARK MODE TOGGLE BUTTON (in navbar)
+══════════════════════════════════════════ */
+.dark-toggle-wrap {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.dark-toggle-wrap:hover { background: rgba(240,165,0,0.08); border-color: rgba(240,165,0,0.3); }
+
+.toggle-switch {
+  position: relative; width: 36px; height: 20px;
+}
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50px; cursor: pointer;
+  transition: 0.3s;
+}
+.toggle-slider::before {
+  content: ''; position: absolute;
+  width: 14px; height: 14px; border-radius: 50%;
+  left: 3px; top: 3px;
+  background: white; transition: 0.3s;
+}
+input:checked + .toggle-slider { background: var(--gold); }
+input:checked + .toggle-slider::before { transform: translateX(16px); background: var(--navy); }
+
+.toggle-icon { font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+
+/* ══════════════════════════════════════════
+   BOOKING PROGRESS STEPS
+══════════════════════════════════════════ */
+.progress-steps {
+  display: flex; align-items: center;
+  margin-bottom: 2.5rem; position: relative;
+}
+.progress-steps::before {
+  content: ''; position: absolute;
+  top: 20px; left: 0; right: 0; height: 2px;
+  background: var(--gray-200); z-index: 0;
+}
+.step {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 0.5rem; position: relative; z-index: 1;
+}
+.step-circle {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--gray-200); color: var(--gray-400);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: 3px solid var(--gray-200);
+}
+.step.active .step-circle {
+  background: var(--navy); color: var(--white);
+  border-color: var(--navy);
+  box-shadow: 0 0 0 4px rgba(10,15,30,0.1);
+}
+.step.done .step-circle {
+  background: var(--gold); color: var(--navy);
+  border-color: var(--gold);
+}
+.step-label { font-size: 0.78rem; font-weight: 600; color: var(--gray-400); text-align: center; }
+.step.active .step-label { color: var(--navy); }
+.step.done .step-label { color: var(--gold); }
+
+.step-content { display: none; }
+.step-content.active { display: block; animation: fadeUp 0.4s ease; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+.step-nav { display: flex; justify-content: space-between; margin-top: 2rem; }
+
+/* ══════════════════════════════════════════
+   MOBILE RESPONSIVE ENHANCEMENTS
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .progress-steps::before { top: 20px; }
+  .step-label { font-size: 0.65rem; }
+  .step-circle { width: 34px; height: 34px; font-size: 0.8rem; }
+}
+
+/* ══════════════════════════════════════════
+   PARALLAX HERO ENHANCEMENT
+══════════════════════════════════════════ */
+.hero-parallax .hero-image {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* ══════════════════════════════════════════
+   SEARCH BAR GLOBAL
+══════════════════════════════════════════ */
+.global-search {
+  position: relative; max-width: 400px;
+}
+.global-search input {
+  width: 100%; padding: 0.7rem 3rem 0.7rem 1.2rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50px; color: var(--white);
+  font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+  outline: none; transition: all 0.3s ease;
+}
+.global-search input:focus { border-color: var(--gold); background: rgba(240,165,0,0.06); }
+.global-search input::placeholder { color: rgba(255,255,255,0.3); }
+.global-search i {
+  position: absolute; right: 1.2rem; top: 50%;
+  transform: translateY(-50%); color: rgba(255,255,255,0.4); font-size: 0.9rem;
+}

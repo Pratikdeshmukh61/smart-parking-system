@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Book a Slot - ParkTech Solutions</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    .page-hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); padding: 10rem 2rem 5rem; text-align: center; }
+    .page-hero h1 { color: var(--white); margin-bottom: 0.75rem; }
+    .page-hero h1 span { color: var(--gold); }
+    .page-hero p { color: rgba(255,255,255,0.6); }
+    .breadcrumb { display:flex;justify-content:center;gap:0.5rem;font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:1.5rem; }
+    .breadcrumb a { color:var(--gold); }
+
+    .booking-layout {
+      display: grid; grid-template-columns: 1fr 380px;
+      gap: 2rem; align-items: start;
+    }
+    .booking-form-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 2.5rem; box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+    }
+    .form-section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--gray-100);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .form-section-title i { color: var(--gold); }
+
+    select.form-control { cursor: pointer; }
+
+    .summary-card {
+      background: var(--navy); border-radius: var(--radius-lg);
+      padding: 2rem; position: sticky; top: 90px; color: var(--white);
+    }
+    .summary-title {
+      font-family: 'Syne', sans-serif; font-size: 1.1rem;
+      font-weight: 700; margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .summary-row {
+      display: flex; justify-content: space-between;
+      font-size: 0.9rem; margin-bottom: 0.75rem;
+      color: rgba(255,255,255,0.7);
+    }
+    .summary-row span:last-child { color: var(--white); font-weight: 600; }
+    .summary-total {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1rem; margin-top: 0.5rem;
+      display: flex; justify-content: space-between;
+      font-family: 'Syne', sans-serif; font-weight: 800;
+    }
+    .summary-total .amount { font-size: 1.8rem; color: var(--gold); }
+    .payment-methods { margin-top: 1.5rem; }
+    .payment-methods h5 { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
+    .pay-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .pay-opt {
+      padding: 0.75rem; border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.85rem; cursor: pointer;
+      transition: var(--transition); background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.7);
+    }
+    .pay-opt:hover, .pay-opt.selected { border-color: var(--gold); background: rgba(240,165,0,0.08); color: var(--white); }
+    .pay-opt i { color: var(--gold); }
+    .pay-btn {
+      width: 100%; padding: 1rem; margin-top: 1.5rem;
+      background: var(--gold); color: var(--navy);
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: 1rem; border: none; border-radius: var(--radius);
+      cursor: pointer; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    .pay-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .slot-selector { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-top: 0.75rem; }
+    .slot-btn {
+      padding: 0.5rem; text-align: center; border-radius: 8px;
+      border: 1px solid var(--gray-200); font-size: 0.8rem; font-weight: 600;
+      cursor: pointer; transition: var(--transition); background: var(--white);
+      color: var(--navy);
+    }
+    .slot-btn:hover { border-color: var(--gold); background: rgba(240,165,0,0.05); }
+    .slot-btn.selected { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+    .slot-btn.taken { background: var(--gray-100); color: var(--gray-400); cursor: not-allowed; border-color: var(--gray-200); }
+    .slot-legend { display: flex; gap: 1.5rem; margin-bottom: 0.75rem; }
+    .legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--gray-600); }
+    .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+    .dot-available { background: var(--white); border: 1px solid var(--gray-200); }
+    .dot-selected { background: var(--gold); }
+    .dot-taken { background: var(--gray-200); }
+
+    .success-modal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6); z-index: 9000;
+      align-items: center; justify-content: center; backdrop-filter: blur(4px);
+    }
+    .success-modal.show { display: flex; }
+    .success-box {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 3rem; text-align: center; max-width: 420px; width: 90%;
+      animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes popIn { from{opacity:0;transform:scale(0.8)} to{opacity:1;transform:scale(1)} }
+    .success-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: rgba(34,197,94,0.1); color: #22c55e;
+      font-size: 2.5rem; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    .success-box h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .success-box p { color: var(--gray-600); margin-bottom: 2rem; }
+
+    @media(max-width:968px) { .booking-layout { grid-template-columns: 1fr; } .summary-card { position: static; margin-top: 2rem; } }
+    @media(max-width:768px) { .booking-form-card { padding: 1.5rem; } .form-section-title { font-size: 1rem; } }
+    @media(max-width:480px) { 
+      .slot-selector { grid-template-columns: repeat(3,1fr); } 
+      .pay-opts { grid-template-columns: 1fr 1fr; }
+      .booking-form-card { padding: 1rem; }
+      .summary-card { padding: 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .slot-btn { font-size: 0.7rem; padding: 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+<div id="loader"><div class="loader-inner"><div class="loader-logo">smart<span>city</span></div><div class="loader-bar"></div></div></div>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">smart<span>city</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="dropdown-parent"><a href="services.html">Services</a><ul class="nav-dropdown"><li><a href="pricing.html">Pricing Plans</a></li><li><a href="services.html">All Services</a></li><li><a href="dashboard.html">Dashboard</a></li></ul></li>
+    <li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="review.html">Reviews</a></li><li><a href="login.html">Login</a></li>
+    <li><a href="booking.html" class="nav-cta active">Book Now</a></li>
+  </ul>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<nav class="mobile-nav">
+  <a href="index.html">Home</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="review.html">Reviews</a><a href="login.html">Login</a><a href="booking.html" class="m-cta">Book Now</a>
+</nav>
+
+<section class="page-hero">
+  <div class="breadcrumb"><a href="index.html">Home</a> / Book a Slot</div>
+  <h1>Book Your <span>Parking Slot</span></h1>
+  <p>Reserve your spot in seconds. Instant confirmation guaranteed.</p>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="booking-layout">
+      <!-- FORM -->
+      <div class="booking-form-card reveal">
+        <div class="form-section-title"><i class="fas fa-user"></i> Personal Details</div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-control" id="fullName" placeholder="pratik Deshmukh" required/></div>
+          <div class="form-group"><label class="form-label">Mobile Number</label><input type="tel" class="form-control" id="mobile" placeholder="+91 98765 43210" required/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-control" id="email" placeholder="pratikdesg@gmail.con" required/></div>
+          <div class="form-group"><label class="form-label">Vehicle Number</label><input type="text" class="form-control" id="carNumber" placeholder="MH12AB1234" required/></div>
+        </div>
+
+        <div class="form-section-title" style="margin-top:1.5rem"><i class="fas fa-calendar-alt"></i> Booking Details</div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Check-In Date</label><input type="date" class="form-control" id="checkinDate" onchange="calcRent()"/></div>
+          <div class="form-group"><label class="form-label">Check-Out Date</label><input type="date" class="form-control" id="checkoutDate" onchange="calcRent()"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Check-In Time</label><input type="time" class="form-control" id="checkinTime" onchange="calcRent()"/></div>
+          <div class="form-group"><label class="form-label">Check-Out Time</label><input type="time" class="form-control" id="checkoutTime" onchange="calcRent()"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Parking Plan</label>
+            <select class="form-control" id="plan" onchange="calcRent()">
+              <option value="">Select Plan</option>
+              <option value="hourly">Hourly - 20/hr</option>
+              <option value="daily">Daily - 150/day</option>
+              <option value="monthly">Monthly - 2000/month</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Vehicle Type</label>
+            <select class="form-control" id="vehicleType">
+              <option value="car">Car / SUV</option>
+              <option value="bike">Bike / Scooter</option>
+              <option value="truck">Truck / Van</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-section-title" style="margin-top:1.5rem"><i class="fas fa-map-marker-alt"></i> Select Slot</div>
+        <div class="slot-legend">
+          <div class="legend-item"><div class="legend-dot dot-available"></div> Available</div>
+          <div class="legend-item"><div class="legend-dot dot-selected"></div> Selected</div>
+          <div class="legend-item"><div class="legend-dot dot-taken"></div> Taken</div>
+        </div>
+        <div class="slot-selector" id="slotGrid"></div>
+
+        <div class="form-group" style="margin-top:1.5rem">
+          <label class="form-label">Upload Vehicle Photo (optional)</label>
+          <input type="file" class="form-control" accept="image/*"/>
+        </div>
+        <div class="form-group" style="display:flex;align-items:center;gap:0.75rem;margin-top:0.5rem">
+          <input type="checkbox" id="terms" style="width:16px;height:16px;accent-color:var(--gold)"/>
+          <label for="terms" style="font-size:0.9rem;color:var(--gray-600)">I agree to the <a href="#" style="color:var(--gold)">Terms & Conditions</a></label>
+        </div>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="summary-card reveal">
+        <div class="summary-title"><i class="fas fa-receipt" style="color:var(--gold);margin-right:0.5rem"></i> Booking Summary</div>
+        <div class="summary-row"><span>Plan</span><span id="s-plan">-</span></div>
+        <div class="summary-row"><span>Duration</span><span id="s-duration">-</span></div>
+        <div class="summary-row"><span>Slot</span><span id="s-slot">Not selected</span></div>
+        <div class="summary-row"><span>Vehicle</span><span id="s-vehicle">-</span></div>
+        <div class="summary-total">
+          <span>Total</span>
+          <span class="amount" id="s-total">0</span>
+        </div>
+        <div class="payment-methods">
+          <h5>Payment Method</h5>
+          <div class="pay-opts">
+            <div class="pay-opt" onclick="selectPay(this)"><i class="fas fa-credit-card"></i> Card</div>
+            <div class="pay-opt" onclick="selectPay(this)"><i class="fas fa-mobile-alt"></i> UPI</div>
+            <div class="pay-opt" onclick="selectPay(this)"><i class="fas fa-university"></i> Net Banking</div>
+            <div class="pay-opt" onclick="selectPay(this)"><i class="fas fa-wallet"></i> Wallet</div>
+          </div>
+        </div>
+        <button class="pay-btn" onclick="submitBooking()"><i class="fas fa-lock"></i> Confirm & Pay</button>
+        <p style="text-align:center;font-size:0.75rem;color:rgba(255,255,255,0.3);margin-top:0.75rem"><i class="fas fa-shield-alt"></i> 256-bit SSL encrypted & secure</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUCCESS MODAL -->
+<div class="success-modal" id="successModal">
+  <div class="success-box">
+    <div class="success-icon"><i class="fas fa-check"></i></div>
+    <h3>Booking Confirmed!</h3>
+    <p id="successMsg">Your parking slot has been reserved. Confirmation sent to your mobile & email.</p>
+    <div style="display:flex;gap:1rem;justify-content:center">
+      <a href="dashboard.html" class="btn btn-primary">View Dashboard</a>
+      <button class="btn btn-outline" style="color:var(--navy);border-color:var(--navy)" onclick="document.getElementById('successModal').classList.remove('show')">Close</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="nav-logo">Park<span>Tech</span></div><p>India's leading smart parking IT company.</p></div><div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li></ul></div><div class="footer-col"><h5>Support</h5><ul><li><a href="contact.html">Contact Us</a></li><li><a href="dashboard.html">Dashboard</a></li></ul></div><div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul></div></div><div class="footer-bottom"><p> 2025 ParkTech Solutions Pvt. Ltd.</p></div></div></footer>
+<a href="https://wa.me/919876543210" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<button class="back-top"><i class="fas fa-chevron-up"></i></button>
+<script src="js/main.js"></script>
+<script>
+  // Generate slots
+  const takenSlots = [2,5,8,11,14,17];
+  let selectedSlot = null;
+  const grid = document.getElementById('slotGrid');
+  for (let i = 1; i <= 20; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'slot-btn' + (takenSlots.includes(i) ? ' taken' : '');
+    btn.textContent = `A${i}`;
+    btn.disabled = takenSlots.includes(i);
+    btn.onclick = () => {
+      document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedSlot = `A${i}`;
+      document.getElementById('s-slot').textContent = `A${i}`;
+    };
+    grid.appendChild(btn);
+  }
+
+  function calcRent() {
+    const plan = document.getElementById('plan').value;
+    const cd = document.getElementById('checkinDate').value;
+    const co = document.getElementById('checkoutDate').value;
+    const ct = document.getElementById('checkinTime').value;
+    const ot = document.getElementById('checkoutTime').value;
+    if (!plan || !cd || !co || !ct || !ot) return;
+    const start = new Date(`${cd}T${ct}`);
+    const end = new Date(`${co}T${ot}`);
+    if (end <= start) return;
+    const diff = end - start;
+    const hours = Math.ceil(diff / 36e5);
+    const days = Math.ceil(diff / 864e5);
+    const months = Math.ceil(days / 30);
+    let rent = 0, dur = '';
+    if (plan === 'hourly') { rent = hours * 20; dur = `${hours} hr${hours>1?'s':''}`; }
+    if (plan === 'daily')  { rent = days * 150; dur = `${days} day${days>1?'s':''}`; }
+    if (plan === 'monthly'){ rent = months * 2000; dur = `${months} month${months>1?'s':''}`; }
+    document.getElementById('s-plan').textContent = plan.charAt(0).toUpperCase()+plan.slice(1);
+    document.getElementById('s-duration').textContent = dur;
+    document.getElementById('s-total').textContent = `Rs.${rent.toLocaleString()}`;
+    document.getElementById('s-vehicle').textContent = document.getElementById('vehicleType').value;
+  }
+
+  function selectPay(el) {
+    document.querySelectorAll('.pay-opt').forEach(p => p.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function submitBooking() {
+    const name = document.getElementById('fullName').value.trim();
+    const mobile = document.getElementById('mobile').value.trim();
+    const car = document.getElementById('carNumber').value.trim();
+    const plan = document.getElementById('plan').value;
+    const terms = document.getElementById('terms').checked;
+    if (!name || !mobile || !car || !plan || !selectedSlot) {
+      alert(' Please fill all required fields and select a slot.');
+      return;
+    }
+    if (!/^\+?[\d\s]{10,13}$/.test(mobile.replace(/\s/,''))) {
+      alert(' Please enter a valid mobile number.');
+      return;
+    }
+    if (!terms) { alert(' Please accept Terms & Conditions.'); return; }
+    const total = document.getElementById('s-total').textContent;
+    document.getElementById('successMsg').textContent = `Slot ${selectedSlot} reserved! ${total} charged. Confirmation sent to ${mobile}.`;
+    document.getElementById('successModal').classList.add('show');
+  }
+
+  document.getElementById('vehicleType').addEventListener('change', () => {
+    document.getElementById('s-vehicle').textContent = document.getElementById('vehicleType').value;
+  });
+</script>
+</body>
+</html>

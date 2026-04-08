@@ -1,0 +1,178 @@
+/* ========================================
+   DASHBOARD PAGE STYLES
+   ======================================== */
+
+/* ── DASHBOARD LAYOUT ── */
+body { background: var(--gray-100); }
+.dash-layout { 
+  display: grid; 
+  grid-template-columns: 260px 1fr; 
+  min-height: 100vh; 
+  padding-top: 70px; 
+}
+
+/* ── DASHBOARD SIDEBAR ── */
+.dash-sidebar {
+  background: var(--navy); padding: 2rem 1.5rem;
+  border-right: 1px solid var(--gray-200);
+}
+.dash-user {
+  display: flex; align-items: center; gap: 1rem;
+  padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 2rem;
+}
+.user-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--gold); display: flex; align-items: center;
+  justify-content: center; font-weight: 800; color: var(--navy);
+  font-family: 'Syne', sans-serif;
+}
+.user-info h4 { color: var(--white); font-size: 1rem; margin-bottom: 0.2rem; }
+.user-info p { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+
+.dash-nav {
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.dash-nav a {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.75rem 1rem; border-radius: var(--radius);
+  color: rgba(255,255,255,0.7); text-decoration: none;
+  transition: var(--transition); font-size: 0.9rem;
+}
+.dash-nav a:hover,
+.dash-nav a.active {
+  background: rgba(240,165,0,0.15);
+  color: var(--gold);
+}
+.dash-nav i { font-size: 1rem; width: 20px; }
+
+/* ── DASHBOARD MAIN CONTENT ── */
+.dash-main {
+  padding: 2rem;
+}
+.dash-header {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem; margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm); border: 1px solid var(--gray-200);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.dash-header h2 { color: var(--navy); font-size: 1.5rem; }
+.dash-actions { display: flex; gap: 1rem; }
+
+/* ── STATS CARDS ── */
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem; margin-bottom: 2rem;
+}
+.stat-card {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 1.5rem; border: 1px solid var(--gray-200);
+  transition: var(--transition);
+}
+.stat-card:hover { box-shadow: var(--shadow-md); border-color: var(--gold); }
+.stat-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: rgba(240,165,0,0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 1.2rem; margin-bottom: 1rem;
+}
+.stat-value {
+  font-family: 'Syne', sans-serif; font-size: 2rem;
+  font-weight: 800; color: var(--navy); line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.stat-label { color: var(--gray-600); font-size: 0.85rem; }
+
+/* ── SLOT MAP SECTION ── */
+.slot-section {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 2rem; border: 1px solid var(--gray-200);
+  margin-bottom: 2rem;
+}
+.slot-header {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 2rem;
+}
+.slot-header h3 { color: var(--navy); font-size: 1.3rem; }
+.slot-filters { display: flex; gap: 0.5rem; }
+.filter-btn {
+  padding: 0.5rem 1rem; border-radius: var(--radius);
+  border: 1px solid var(--gray-300); background: var(--white);
+  color: var(--gray-600); font-size: 0.85rem; cursor: pointer;
+  transition: var(--transition);
+}
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--gold); color: var(--navy); border-color: var(--gold);
+}
+
+.slot-map {
+  display: grid; grid-template-columns: repeat(10, 1fr);
+  gap: 0.5rem; margin-bottom: 2rem;
+}
+.slot-cell {
+  aspect-ratio: 1; border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700; cursor: pointer;
+  transition: var(--transition); border: 2px solid var(--gray-200);
+  background: var(--white); color: var(--gray-600);
+}
+.slot-cell.occupied {
+  background: var(--danger); color: var(--white);
+  border-color: var(--danger); cursor: not-allowed;
+}
+.slot-cell.available:hover {
+  background: var(--gold); color: var(--navy);
+  border-color: var(--gold);
+}
+
+/* ── BOOKING HISTORY SECTION ── */
+.history-section {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 2rem; border: 1px solid var(--gray-200);
+}
+.history-header {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 1.5rem;
+}
+.history-header h3 { color: var(--navy); font-size: 1.3rem; }
+
+.history-table {
+  width: 100%; border-collapse: collapse;
+}
+.history-table th {
+  text-align: left; padding: 0.75rem;
+  background: var(--gray-100); font-weight: 600;
+  color: var(--navy); font-size: 0.85rem; border-bottom: 2px solid var(--gray-200);
+}
+.history-table td {
+  padding: 0.75rem; border-bottom: 1px solid var(--gray-200);
+  font-size: 0.9rem; color: var(--gray-700);
+}
+.status-badge {
+  display: inline-flex; align-items: center; gap: 0.25rem;
+  padding: 0.25rem 0.75rem; border-radius: 50px;
+  font-size: 0.75rem; font-weight: 600;
+}
+.status-badge.active {
+  background: rgba(34,197,94,0.1); color: var(--success);
+}
+.status-badge.completed {
+  background: rgba(59,130,246,0.1); color: var(--info);
+}
+.status-badge.cancelled {
+  background: rgba(239,68,68,0.1); color: var(--danger);
+}
+
+/* ── RESPONSIVE DESIGN ── */
+@media(max-width:1024px) {
+  .stats-grid { grid-template-columns: repeat(2,1fr); }
+  .slot-map { grid-template-columns: repeat(8,1fr); }
+}
+@media(max-width:768px) {
+  .dash-layout { grid-template-columns: 1fr; }
+  .dash-sidebar { display: none; }
+  .dash-main { margin-left: 0; padding: 1.2rem; }
+  .slot-map { grid-template-columns: repeat(7,1fr); }
+  .stats-grid { grid-template-columns: 1fr; }
+}

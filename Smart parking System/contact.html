@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Contact Us — smart parking Solutions</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/features.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    .page-hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); padding: 10rem 2rem 5rem; text-align: center; }
+    .page-hero h1 { color: var(--white); margin-bottom: 0.75rem; }
+    .page-hero h1 span { color: var(--gold); }
+    .page-hero p { color: rgba(255,255,255,0.6); }
+    .breadcrumb { display:flex;justify-content:center;gap:0.5rem;font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:1.5rem; }
+    .breadcrumb a { color:var(--gold); }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: start; }
+    .info-cards { display: flex; flex-direction: column; gap: 1.2rem; }
+    .info-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 1.5rem; border: 1px solid var(--gray-200);
+      display: flex; gap: 1rem; align-items: flex-start;
+      transition: var(--transition);
+    }
+    .info-card:hover { border-color: var(--gold); box-shadow: var(--shadow-md); }
+    .info-icon {
+      width: 48px; height: 48px; border-radius: var(--radius);
+      background: rgba(240,165,0,0.1); display: flex;
+      align-items: center; justify-content: center;
+      color: var(--gold); font-size: 1.1rem; flex-shrink: 0;
+    }
+    .info-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .info-card p, .info-card a { font-size: 0.88rem; color: var(--gray-600); display: block; }
+    .info-card a:hover { color: var(--gold); }
+
+    .contact-form-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 2.5rem; box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+    }
+    .form-title { font-family: 'Syne',sans-serif; font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .form-sub { color: var(--gray-600); font-size: 0.9rem; margin-bottom: 2rem; }
+
+    .success-toast {
+      display: none; background: #22c55e; color: white;
+      padding: 1rem 1.5rem; border-radius: var(--radius);
+      margin-top: 1rem; align-items: center; gap: 0.75rem; font-weight: 600;
+    }
+    .success-toast.show { display: flex; }
+
+    @media(max-width:768px) { .contact-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<div id="loader"><div class="loader-inner"><div class="loader-logo">smart<span>city</span></div><div class="loader-bar"></div></div></div>
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">smart<span>city</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li class="dropdown-parent"><a href="services.html">Services</a><ul class="nav-dropdown"><li><a href="pricing.html">Pricing Plans</a></li><li><a href="services.html">All Services</a></li><li><a href="dashboard.html">Dashboard</a></li></ul></li>
+    <li><a href="about.html">About</a></li><li><a href="contact.html" class="active">Contact</a></li><li><a href="review.html">Reviews</a></li><li><a href="login.html">Login</a></li>
+    <li><a href="booking.html" class="nav-cta">Book Now</a></li>
+  </ul>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<nav class="mobile-nav">
+  <a href="index.html">Home</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="review.html">Reviews</a><a href="login.html">Login</a><a href="booking.html" class="m-cta">Book Now →</a>
+</nav>
+
+<section class="page-hero">
+  <div class="breadcrumb"><a href="index.html">Home</a> / Contact</div>
+  <h1>Get In <span>Touch</span></h1>
+  <p>Our team is here to help. Reach out anytime.</p>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="info-cards reveal-left">
+        <div class="info-card">
+          <div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div><h4>Email Us</h4><a href="mailto:support@parktech.in">pratikdeshmukh@gmail.com</a><a href="mailto:sales@parktech.in">sales@parktech.in</a></div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fas fa-phone"></i></div>
+          <div><h4>Call Us</h4><a href="tel:+919876543210">+91 7410184345</a><a href="tel:+918005001234">+91 80050 01234</a></div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div><h4>Visit Us</h4><p>pune</p><p>Pune, Maharashtra 411045</p></div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fas fa-clock"></i></div>
+          <div><h4>Working Hours</h4><p>Mon–Sat: 9:00 AM – 8:00 PM</p><p>Sun: 10:00 AM – 4:00 PM</p></div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
+          <div><h4>WhatsApp Support</h4><a href="https://wa.me/919876543210" target="_blank">Chat on WhatsApp</a><p>Typically replies in minutes</p></div>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="contact-form-card reveal-right">
+        <div class="form-title">Send Us a Message</div>
+        <div class="form-sub">Fill in the form and we'll get back within 24 hours.</div>
+        <form id="contactForm" onsubmit="sendMessage(event)">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-control" placeholder="pratik" required/></div>
+            <div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-control" placeholder="Deshmukh"/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-control" placeholder="pratikdesh@gmail.com" required/></div>
+            <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-control" placeholder="+91 98345 43210"/></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <select class="form-control" required>
+              <option value="">Select topic</option>
+              <option>Booking Support</option>
+              <option>Billing & Payments</option>
+              <option>Technical Issue</option>
+              <option>Partnership Inquiry</option>
+              <option>General Question</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-control" rows="5" placeholder="Describe your query in detail..." required style="resize:vertical"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+          <div class="success-toast" id="toast"><i class="fas fa-check-circle"></i> Message sent! We'll reply within 24 hours.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="nav-logo">Park<span>Tech</span></div><p>India's leading smart parking IT company.</p><div class="social-links" style="margin-top:1.5rem"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div><div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li></ul></div><div class="footer-col"><h5>Support</h5><ul><li><a href="contact.html">Contact Us</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="booking.html">Book a Slot</a></li></ul></div><div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 ParkTech Solutions Pvt. Ltd. All rights reserved.</p></div></div></footer>
+<a href="https://wa.me/919876543210" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<button class="back-top"><i class="fas fa-chevron-up"></i></button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+<script src="js/features.js"></script>
+<script src="js/contact.js"></script>
+<script>
+  function sendMessage(e) {
+    e.preventDefault();
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    document.getElementById('contactForm').reset();
+    setTimeout(() => toast.classList.remove('show'), 4000);
+  }
+</script>
+</body>
+</html>

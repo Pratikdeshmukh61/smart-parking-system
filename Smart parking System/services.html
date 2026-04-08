@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Services — ParkTech Solutions</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/features.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    .page-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 10rem 2rem 5rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; top: -40%; right: -20%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(240,165,0,0.08), transparent 70%);
+    }
+    .page-hero h1 { color: var(--white); margin-bottom: 1rem; font-size: clamp(2rem,5vw,3.5rem); }
+    .page-hero h1 span { color: var(--gold); }
+    .page-hero p { color: rgba(255,255,255,0.6); font-size: 1.1rem; max-width: 500px; margin: 0 auto; }
+    .breadcrumb {
+      display: flex; justify-content: center; gap: 0.5rem;
+      font-size: 0.85rem; color: rgba(255,255,255,0.4);
+      margin-bottom: 1.5rem;
+    }
+    .breadcrumb a { color: var(--gold); }
+
+    .services-main {
+      padding: 5rem 2rem;
+    }
+    .service-detail {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 3rem; margin-bottom: 3rem;
+      box-shadow: var(--shadow-md); border: 1px solid var(--gray-200);
+    }
+    .service-detail-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: center; margin-bottom: 3rem;
+    }
+    .service-detail-img {
+      border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .service-detail-img img { width: 100%; height: 300px; object-fit: cover; }
+    .service-detail-content h2 {
+      font-size: 2rem; color: var(--navy); margin-bottom: 1rem;
+    }
+    .service-detail-content p {
+      color: var(--gray-600); line-height: 1.8; margin-bottom: 1.5rem;
+    }
+    .service-features {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .service-feature {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1rem; border-radius: var(--radius);
+      background: var(--gray-100);
+    }
+    .service-feature-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(240,165,0,0.12);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 1rem; flex-shrink: 0;
+    }
+    .service-feature h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .service-feature p { font-size: 0.85rem; color: var(--gray-600); }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 4rem 2rem; text-align: center;
+      border-radius: var(--radius-lg); margin-top: 3rem;
+    }
+    .cta-section h3 { color: var(--white); font-size: 1.8rem; margin-bottom: 1rem; }
+    .cta-section p { color: rgba(255,255,255,0.7); margin-bottom: 2rem; }
+
+    @media(max-width:768px) {
+      .service-detail-header { grid-template-columns: 1fr; }
+      .service-features { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div id="loader"><div class="loader-inner"><div class="loader-logo">smart<span>City</span></div><div class="loader-bar"></div></div></div>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">smart<span>city</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="dropdown-parent">
+      <a href="services.html" class="active">Services</a>
+      <ul class="nav-dropdown">
+        <li><a href="pricing.html"><i class="fas fa-tag"></i> Pricing Plans</a></li>
+        <li><a href="services.html"><i class="fas fa-cogs"></i> All Services</a></li>
+        <li><a href="dashboard.html"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+      </ul>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="review.html">Reviews</a></li>
+    <li><a href="login.html">Login</a></li>
+    <li><a href="booking.html" class="nav-cta">Book Now</a></li>
+  </ul>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<nav class="mobile-nav">
+  <a href="index.html">Home</a>
+  <a href="services.html" class="active">Services</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="review.html">Reviews</a>
+  <a href="login.html">Login</a>
+  <a href="booking.html" class="m-cta">Book Now →</a>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Services</div>
+    <h1>Our <span>Services</span></h1>
+    <p>Comprehensive smart parking solutions powered by cutting-edge technology and innovation.</p>
+  </div>
+</section>
+
+<section class="services-main">
+  <div class="container">
+    
+    <!-- Real-Time Slot Tracking -->
+    <div class="service-detail">
+      <div class="service-detail-header">
+        <div class="service-detail-img">
+          <img src="image/m1.jpg" alt="Real-Time Slot Tracking"/>
+        </div>
+        <div class="service-detail-content">
+          <h2>Real-Time Slot Tracking</h2>
+          <p>Our advanced IoT sensor network provides live parking availability updates across all our facilities. Get instant access to real-time slot information through our mobile app or web portal.</p>
+          <div class="service-features">
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-satellite-dish"></i></div>
+              <div>
+                <h4>Live Updates</h4>
+                <p>Real-time slot availability every 5 seconds</p>
+              </div>
+            </div>
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-mobile-alt"></i></div>
+              <div>
+                <h4>Mobile App</h4>
+                <p>iOS & Android apps with push notifications</p>
+              </div>
+            </div>
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-map-marked-alt"></i></div>
+              <div>
+                <h4>GPS Navigation</h4>
+                <p>Turn-by-turn directions to your booked slot</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Automated Digital Billing -->
+    <div class="service-detail">
+      <div class="service-detail-header">
+        <div class="service-detail-content">
+          <h2>Automated Digital Billing</h2>
+          <p>Experience seamless digital payments with our automated billing system. Support for UPI, credit/debit cards, and digital wallets with instant receipt generation.</p>
+          <div class="service-features">
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-receipt"></i></div>
+              <div>
+                <h4>Instant Receipts</h4>
+                <p>Digital receipts sent to your email immediately</p>
+              </div>
+            </div>
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-credit-card"></i></div>
+              <div>
+                <h4>Multiple Payment Options</h4>
+                <p>UPI, Cards, Net Banking, Wallets supported</p>
+              </div>
+            </div>
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-chart-line"></i></div>
+              <div>
+                <h4>Transparent Pricing</h4>
+                <p>No hidden charges, clear breakdown of costs</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="service-detail-img">
+          <img src="image/m2.jpg" alt="Automated Digital Billing"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- 24/7 Security Monitoring -->
+    <div class="service-detail">
+      <div class="service-detail-header">
+        <div class="service-detail-img">
+          <img src="image/m3.jpg" alt="24/7 Security Monitoring"/>
+        </div>
+        <div class="service-detail-content">
+          <h2>24/7 Security Monitoring</h2>
+          <p>AI-powered surveillance system with license plate recognition, ensuring complete security of your vehicle with encrypted entry logs and instant alerts.</p>
+          <div class="service-features">
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-video"></i></div>
+              <div>
+                <h4>AI Surveillance</h4>
+                <p>Smart CCTV with motion detection and alerts</p>
+              </div>
+            </div>
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-id-card"></i></div>
+              <div>
+                <h4>LPR Technology</h4>
+                <p>Automatic license plate recognition</p>
+              </div>
+            </div>
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-shield-alt"></i></div>
+              <div>
+                <h4>Secure Access</h4>
+                <p>Encrypted entry logs and authentication</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Valet Management -->
+    <div class="service-detail">
+      <div class="service-detail-header">
+        <div class="service-detail-content">
+          <h2>Valet Management</h2>
+          <p>Premium valet service with digital handoff tracking, real-time vehicle status updates, and instant retrieval when you need your car.</p>
+          <div class="service-features">
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-user-tie"></i></div>
+              <div>
+                <h4>Professional Staff</h4>
+                <p>Trained and verified valet personnel</p>
+              </div>
+            </div>
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-clock"></i></div>
+              <div>
+                <h4>Quick Service</h4>
+                <p>Vehicle retrieval within 5 minutes</p>
+              </div>
+            </div>
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-mobile-alt"></i></div>
+              <div>
+                <h4>App Tracking</h4>
+                <p>Real-time valet status on your phone</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="service-detail-img">
+          <img src="image/m4.jpg" alt="Valet Management"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analytics Dashboard -->
+    <div class="service-detail">
+      <div class="service-detail-header">
+        <div class="service-detail-img">
+          <img src="image/m5.jpg" alt="Analytics Dashboard"/>
+        </div>
+        <div class="service-detail-content">
+          <h2>Analytics Dashboard</h2>
+          <p>Powerful insights into parking operations with real-time data on occupancy, revenue patterns, peak hours, and user behavior analytics.</p>
+          <div class="service-features">
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-chart-bar"></i></div>
+              <div>
+                <h4>Real-time Analytics</h4>
+                <p>Live dashboard with key metrics</p>
+              </div>
+            </div>
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-download"></i></div>
+              <div>
+                <h4>Reports Export</h4>
+                <p>Download detailed reports in PDF/Excel</p>
+              </div>
+            </div>
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-bell"></i></div>
+              <div>
+                <h4>Smart Alerts</h4>
+                <p>Custom notifications for important events</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile App Integration -->
+    <div class="service-detail">
+      <div class="service-detail-header">
+        <div class="service-detail-content">
+          <h2>Mobile App Integration</h2>
+          <p>Complete mobile solution for booking, payments, navigation, and notifications. Available on both iOS and Android platforms.</p>
+          <div class="service-features">
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-qrcode"></i></div>
+              <div>
+                <h4>QR Code Entry</h4>
+                <p>Scan QR codes for quick access</p>
+              </div>
+            </div>
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-bell"></i></div>
+              <div>
+                <h4>Push Notifications</h4>
+                <p>Real-time alerts and reminders</p>
+              </div>
+            </div>
+            <div class="service-feature">
+              <div class="service-feature-icon"><i class="fas fa-history"></i></div>
+              <div>
+                <h4>Booking History</h4>
+                <p>Complete parking history at your fingertips</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="service-detail-img">
+          <img src="image/m6.jpg" alt="Mobile App Integration"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+      <h3>Ready to Experience Smart Parking?</h3>
+      <p>Join thousands of satisfied customers who have transformed their parking experience with ParkTech.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="booking.html" class="btn btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">
+          <i class="fas fa-car"></i> Book Now
+        </a>
+        <a href="contact.html" class="btn btn-outline" style="font-size: 1rem; padding: 1rem 2rem; border-color: var(--gold); color: var(--gold);">
+          <i class="fas fa-phone"></i> Contact Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">Park<span>Tech</span></div>
+        <p>India's leading smart parking IT company.</p>
+        <div class="social-links" style="margin-top:1.5rem">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="review.html">Reviews</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="booking.html">Book a Slot</a></li>
+          <li><a href="#">Help Center</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 ParkTech Solutions Pvt. Ltd. All rights reserved.</p>
+      <p style="color:rgba(255,255,255,0.3);font-size:0.8rem">Made with ❤️ in India</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919876543210" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<button class="back-top"><i class="fas fa-chevron-up"></i></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+<script src="js/features.js"></script>
+</body>
+</html>

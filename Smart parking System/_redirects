@@ -1,0 +1,8 @@
+# SPA fallback - redirect all routes to index.html for client-side routing
+/*    /index.html   200
+
+# API fallback (if you have any API routes)
+/api/*  /index.html   200
+
+# Handle trailing slashes
+*/    /:splat  200

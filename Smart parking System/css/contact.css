@@ -1,0 +1,92 @@
+/* ========================================
+   CONTACT PAGE STYLES
+   ======================================== */
+
+/* ── PAGE HERO SECTION ── */
+.page-hero { 
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); 
+  padding: 10rem 2rem 5rem; text-align: center; 
+}
+.page-hero h1 { color: var(--white); margin-bottom: 0.75rem; }
+.page-hero h1 span { color: var(--gold); }
+.page-hero p { color: rgba(255,255,255,0.6); font-size: 1.1rem; max-width: 500px; margin: 0 auto; }
+
+/* ── BREADCRUMB NAVIGATION ── */
+.breadcrumb {
+  display: flex; justify-content: center; gap: 0.5rem;
+  font-size: 0.85rem; color: rgba(255,255,255,0.4);
+  margin-bottom: 1.5rem;
+}
+.breadcrumb a { color: var(--gold); }
+
+/* ── CONTACT GRID LAYOUT ── */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3rem; margin-top: 3rem;
+}
+.contact-form-card {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 2.5rem; box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
+}
+.contact-info {
+  display: flex; flex-direction: column; gap: 2rem;
+}
+.info-card {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 2rem; border: 1px solid var(--gray-200);
+  transition: var(--transition);
+}
+.info-card:hover { border-color: var(--gold); box-shadow: var(--shadow-sm); }
+.info-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: rgba(240,165,0,0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 1.2rem; margin-bottom: 1rem;
+}
+.info-card h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+.info-card p { color: var(--gray-600); font-size: 0.95rem; }
+
+/* ── CONTACT FORM STYLES ── */
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label {
+  display: block; margin-bottom: 0.5rem;
+  font-weight: 600; color: var(--navy); font-size: 0.9rem;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%; padding: 0.875rem 1rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  font-size: 0.95rem; transition: var(--transition);
+  background: var(--white);
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none; border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(240,165,0,0.1);
+}
+.form-group textarea { resize: vertical; min-height: 120px; }
+
+/* ── SUCCESS TOAST NOTIFICATION ── */
+.success-toast {
+  position: fixed; top: 100px; right: 2rem;
+  background: var(--success); color: var(--white);
+  padding: 1rem 1.5rem; border-radius: var(--radius);
+  box-shadow: var(--shadow-lg); display: none;
+  align-items: center; gap: 0.75rem;
+  z-index: 1000; animation: slideIn 0.3s ease;
+}
+.success-toast.show { display: flex; }
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ── RESPONSIVE DESIGN ── */
+@media(max-width:768px) { 
+  .contact-grid { grid-template-columns: 1fr; } 
+  .form-row { grid-template-columns: 1fr; }
+}
